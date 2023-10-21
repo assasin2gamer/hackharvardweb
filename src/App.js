@@ -53,48 +53,54 @@ function App() {
         <div id = "left" style={{ display: 'flex', width: '100%', height: '30%', marginTop: '5%' }}>
           <div style={{ width: '45%', borderStyle: 'solid', marginRight: '5%', marginLeft: '2.5%', height: '30vh', borderColor: 'white', backgroundColor: "rgba(0,0,0,0.5)", borderWidth: '0.3vh', borderRadius: '4vh', height: '80vh'}}>
             
-            <div style={{color: "white"}}>
-              category
+            <div id = "big-box-heading" style={{color: "white"}}>
+              Categories
             </div>
 
             <div style={{color: "white"}}>
               {category}
             </div>
-
+      </div>
           </div>
-        </div>
-
-        <div id = "right">
 
           <div>
-            
-            <div id="top" style={{ width: '45%', borderStyle: 'solid', margin: 'auto', height: '30vh', borderColor: 'white', backgroundColor: "rgba(0,0,0,0.5)", borderWidth: '0.3vh', borderRadius: '4vh', position: "relative"}}>
+
+            <div style={{ width: '20vh', borderStyle: 'solid', height: '20vh', borderColor: 'white', backgroundColor: "rgba(0,0,0,0.5)", borderWidth: '0.3vh', borderRadius: '4vh', position: "absolute", bottom: "86vh", right: "11vh"}}>
               
               <div style={{color: "white"}}>
-                Blink Counter
+                space_counter
               </div>
 
               <div style={{fontSize:'100px', color: "white"}}>
-                {blink_counter}
+                {space_counter}
               </div>
-
-              <div style={{ width: '45%', borderStyle: 'solid', margin: 'auto', height: '30vh', borderColor: 'white', backgroundColor: "rgba(0,0,0,0.5)", borderWidth: '0.3vh', borderRadius: '4vh', position: "absolute"}}>
-              
-                <div style={{color: "white"}}>
-                  space_counter
-                </div>
-
-                <div style={{fontSize:'100px', color: "white"}}>
-                  {space_counter}
-                </div>
-
-              </div>
-            </div>
 
           </div>
 
-      </div>
-    </div>
+          </div>
+          <div style = {{ width: '20vh', borderStyle: 'solid', height: '20vh', borderColor: 'white', backgroundColor: "rgba(0,0,0,0.5)", borderWidth: '0.3vh', borderRadius: '4vh', position: "absolute", bottom: "86vh", right: "59vh"}}>
+            <div style= {{color: "white"}}>
+                Blink Counter
+            </div>
+
+            <div style={{fontSize:'100px', color: "white"}}>
+                {blink_counter}
+            </div>
+
+          </div>
+          <div style={{ width: '90vh', borderStyle: 'solid', height: '65vh', borderColor: 'white', backgroundColor: "rgba(0,0,0,0.5)", borderWidth: '0.3vh', borderRadius: '4vh', float: 'left', position: "absolute", top: "15vh", left: "86vh"}}>
+              
+              <div style={{color: "white"}}>
+                words
+              </div>
+
+              <div style={{color: "white"}}>
+                {wordItems}
+              </div>
+
+          </div>
+        </div>
+        
   );
 }
 
