@@ -1,46 +1,45 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import './index.css';
-import React, {useEffect} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Granim from "granim";
 
+let space_counter = 0;
+let blink_counter = 0;
+
+function DelayedLoopComponent() {
+    const [count, setCount] = useState(0);
+    const loopCondition = useRef(true); // Loop will run as long as this is true
+  
+    useEffect(() => {
+      const intervalId = setInterval(() => {
+        // Your loop logic here
+        setCount(prev => prev + 1);
+  
+        // Example: Stop the loop when count reaches 10
+        if (count >= 10) {
+          loopCondition.current = false;
+          clearInterval(intervalId);
+        }
+  
+      }, 1000); // 1 second delay
+  
+      return () => {
+        clearInterval(intervalId); // Clear interval on component unmount
+      };
+    }, [count]);
+  
+    return <div>{count}</div>;
+}
+
 function App() {
-
-
-  let blink_counter = 0;
-  let space_counter = 0;
-
-
-  //sample array to test the formatting of text in our div
-  const words = ['apple', 'banana', 'cherry', 'date', 'elderberry'];
-
-  const wordItems = words.map((word, index) => {
-    return <li  key={index}>{word}</li>;
-  });
-
-  //sample array to test the formatting of text in our div
-  const output = words.map((word, index) => {
-    return <li key={index}>{word}</li>;
-  });
-
-  //nested arrays for the potential charactert
-  const choices = [
-    ["The", "Be", "To", "Of", "And", "In", "That"],
-    ['a', 'b', 'c', 'd'],
-    ['e', 'f', 'g', 'h'],
-    ['i', 'j', 'k', 'l', 'm', 'n'],
-    ['o', 'p', 'q', 'r', 's', 't'],
-    ['u', 'v', 'w', 'x', 'y', 'z'],
-    ['.', '!', '?', ','],
-    ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-    ["quit"]
-  ]
 
   //we'll initialize what will appear as our c
   //the following is pseudocode for how we want to manipulate this array with respect 
   /*
 
   */
+
   useEffect(() => {
     new Granim({
       element: "#gradient-canvas",
@@ -62,8 +61,14 @@ function App() {
     });
   }, []);
 
+  let dictionary = {
+    start: ['words', 'letters'],
+    words: ['the', 'and'],
+    letters: ['A', 'B']
+    };
 
-
+    const [count, setCount] = useState(0);
+  
 
   return (
     <div className="App">
@@ -71,14 +76,14 @@ function App() {
       <div id="gradient-mask"/>
 
         <div id = "left" style={{ display: 'flex', width: '100%', height: '30%', marginTop: '5%' }}>
-          <div style={{ width: '45%', borderStyle: 'solid', marginRight: '5%', marginLeft: '2.5%', height: '30vh', borderColor: 'white', backgroundColor: "rgba(0,0,0,0.5)", borderWidth: '0.3vh', borderRadius: '4vh', height: '80vh'}}>
+          <div style={{ width: '45%', borderStyle: 'solid', marginRight: '5%', marginLeft: '2.5%', borderColor: 'white', backgroundColor: "rgba(0,0,0,0.5)", borderWidth: '0.3vh', borderRadius: '4vh', height: '80vh'}}>
             
             <div style={{color: "white", fontSize: "7vh", fontWeight: "2vh", textAlign: "left", marginLeft: "2vh", marginTop: "2vh"}}>
               Categories:
             </div>
 
             <div style={{color: "white", fontSize: "3vh", textAlign: "left", marginLeft: "2vh", marginTop: "2vh"}}>
-              {output}
+              Output
             </div>
       </div>
           </div>
@@ -104,7 +109,9 @@ function App() {
             </div>
 
             <div style={{fontSize:'100px', color: "white"}}>
-                {blink_counter}
+                <button onClick={() => setCount(count + 1)}>Increment</button>
+                
+                {count}
             </div>
 
           </div>
@@ -123,5 +130,7 @@ function App() {
         
   );
 }
+
+
 
 export default App;
